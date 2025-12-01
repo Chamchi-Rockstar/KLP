@@ -47,6 +47,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.css">
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@github/relative-time-element@4.4.5/dist/bundle.js"></script>  
+<style> .controls-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .filter-controls, .sort-controls { display: flex; align-items: center; }
+        
+        /* 콤보 상자 스타일 */
+        .filter-select { padding: 10px; margin-right: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 1em; }
+        
+        /* 정렬 버튼 스타일 */
+        .sort-button { padding: 10px 15px; margin-right: 10px; cursor: pointer; border: 1px solid #ccc; background-color: #f4f4f4; border-radius: 5px; }
+        .sort-button.active { background-color: #cc0000; color: white; border-color: #cc0000; }</style>
+       
 </head>
 <body>
   <body class="overflow-hidde font-sans antialiased">
@@ -92,11 +102,14 @@
       <h1>KLP 도메인 용어 정의</h1>
 
     <div class="controls-container">
+        <div class="controls-container">
         <div class="filter-controls">
             <span>필터: </span>
-            <button class="filter-button active" data-filter="all" onclick="filterTerms('all', this)">전체 보기</button>
-            <button class="filter-button" data-filter="klp" onclick="filterTerms('klp', this)">자체 제작 요소 (KLP)</button>
-            <button class="filter-button" data-filter="external" onclick="filterTerms('external', this)">외부 응용 요소</button>
+            <select id="term-filter" class="filter-select" onchange="filterTerms(this.value)">
+                <option value="all">전체 보기</option>
+                <option value="klp">자체 제작 요소 (KLP)</option>
+                <option value="external">외부 응용 요소 (Schema/Purl 등)</option>
+            </select>
         </div>
 
         <div class="sort-controls">
@@ -105,6 +118,8 @@
             <button class="sort-button" data-sort-dir="desc" onclick="sortTerms('desc', this)">용어 이름 내림차순 (Z-A)</button>
         </div>
     </div>
+    </div>
+<div id="terms-list">
   <h2 id="section-1">
  Properties in the <code>/terms/</code> namespace
       </h2>
@@ -280,7 +295,7 @@
             <tr><td class="field-name">Label</td><td>상품설명</td></tr>
             <tr><td class="field-name">Type of Term</td><td>Property</td></tr>
         </table>
-
+    </div>
       <br>
       <h2 id="section-2">Display</h2>
 
@@ -292,50 +307,45 @@
     </div>
 </div>
     </div>
-  </body>
     <script>
         // 현재 활성화된 필터 타입 (기본: all)
         let currentFilterType = 'all';
 
-        // 필터링 기능
-        function filterTerms(filterType, clickedButton) {
+        // 필터링 기능 (콤보 상자에서 호출)
+        function filterTerms(filterType) {
             currentFilterType = filterType;
             
             const terms = document.querySelectorAll('.term-definition');
-            const buttons = document.querySelectorAll('.filter-button');
-
-            // 버튼 활성화 상태 업데이트
-            buttons.forEach(button => {
-                button.classList.remove('active');
-            });
-            clickedButton.classList.add('active');
 
             // 테이블 표시/숨기기
             terms.forEach(term => {
                 const dataSource = term.getAttribute('data-source');
                 
                 if (filterType === 'all' || dataSource === filterType) {
-                    // 필터에 맞으면 표시, 정렬을 위해 'table' 상태 유지
                     term.style.display = 'table';
                 } else {
-                    // 필터에 맞지 않으면 숨기기
                     term.style.display = 'none';
                 }
             });
             
-            // 필터링 후, 현재 적용된 정렬 상태를 유지하기 위해 정렬 함수를 다시 호출
+            // 필터링 후, 현재 적용된 정렬 상태를 유지
             const currentSortButton = document.querySelector('.sort-button.active');
             if (currentSortButton) {
+                // true를 전달하여 버튼 상태 변경 없이 재정렬만 수행
                 sortTerms(currentSortButton.getAttribute('data-sort-dir'), currentSortButton, true);
+            } else {
+                 // 정렬 버튼이 활성화되지 않은 경우, 현재 보이는 요소만 유지
+                 // (별도로 sortTerms를 호출할 필요 없음, 필터링만 적용됨)
             }
         }
 
-        // 정렬 기능
+        // 정렬 기능 (버튼에서 호출)
         function sortTerms(sortDir, clickedButton, isResort = false) {
             const listContainer = document.getElementById('terms-list');
-            // 현재 표시되고 있는(숨겨지지 않은) 테이블만 선택
+            
+            // 현재 화면에 표시되고 있는 테이블만 선택 (display: table 인 요소)
             const termsArray = Array.from(listContainer.querySelectorAll('.term-definition')).filter(
-                term => currentFilterType === 'all' || term.getAttribute('data-source') === currentFilterType
+                term => term.style.display !== 'none'
             );
             
             // 1. 정렬 로직
@@ -357,7 +367,7 @@
                 listContainer.appendChild(term);
             });
             
-            // 3. 버튼 활성화 상태 업데이트 (재정렬 시에는 버튼 상태 변경 안 함)
+            // 3. 버튼 활성화 상태 업데이트
             if (!isResort) {
                 const buttons = document.querySelectorAll('.sort-button');
                 buttons.forEach(button => button.classList.remove('active'));
@@ -365,14 +375,19 @@
             }
         }
         
-        // 초기 정렬 상태 적용 (A-Z)
+        // 초기 설정 (페이지 로드 시)
         document.addEventListener('DOMContentLoaded', () => {
+            // 초기 정렬 상태 적용 (A-Z)
             const defaultSortButton = document.querySelector('.sort-button[data-sort-dir="asc"]');
             sortTerms('asc', defaultSortButton);
             defaultSortButton.classList.add('active');
             
-            // 초기 필터 버튼 활성화
-            document.querySelector('.filter-button[data-filter="all"]').classList.add('active');
+            // 초기 필터 상태 적용 (All)
+            filterTerms('all');
+            
+            // 필터 콤보 상자에 초기 값 설정
+            document.getElementById('term-filter').value = 'all';
         });
     </script>
+  </body>
 </html>
