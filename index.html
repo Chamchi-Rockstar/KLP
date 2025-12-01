@@ -104,7 +104,7 @@
     <div class="controls-container">
         <div class="controls-container">
         <div class="filter-controls">
-            <span>필터: </span>
+            <span>필터: </span>&nbsp
             <select id="term-filter" class="filter-select" onchange="filterTerms(this.value)">
                 <option value="all">전체 보기</option>
                 <option value="klp">자체 제작 요소 (KLP)</option>
@@ -113,7 +113,7 @@
         </div>
 
         <div class="sort-controls">
-            <span>정렬: </span>
+            <span>정렬: </span>&nbsp
             <button class="sort-button" data-sort-dir="asc" onclick="sortTerms('asc', this)">용어 이름 오름차순 (A-Z)</button>
             <button class="sort-button" data-sort-dir="desc" onclick="sortTerms('desc', this)">용어 이름 내림차순 (Z-A)</button>
         </div>
@@ -297,6 +297,7 @@
         </table>
     </div>
       <br>
+  <hr>
     </div>
       <h2 id="section-2">Display</h2>
       <table>
