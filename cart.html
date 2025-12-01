@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLP: 장바구니</title>
+    <style>
+        /* Common CSS (Header) */
+        body { font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif; line-height: 1.6; margin: 0; background-color: #f8f8f8; color: #333; }
+        .header { background-color: #000; color: white; padding: 15px 0; border-bottom: 3px solid #cc0000; }
+        .header-content { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .klp-title a { font-size: 2em; font-weight: bold; text-decoration: none; color: white; }
+        .klp-util a { color: white; text-decoration: none; margin-left: 20px; font-size: 1em; }
+        .klp-util a:hover { text-decoration: underline; }
+
+        /* Cart Page Specific CSS */
+        .cart-container { max-width: 1280px; margin: 40px auto; padding: 0 20px; }
+        .cart-container h2 { font-size: 2em; margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        
+        .cart-layout { display: flex; gap: 30px; }
+        .item-list-section { flex: 3; }
+        .payment-summary-section { flex: 1; position: sticky; top: 20px; align-self: flex-start; }
+
+        /* Item Table */
+        .cart-table { width: 100%; border-collapse: collapse; background-color: #fff; }
+        .cart-table th, .cart-table td { padding: 15px; border-bottom: 1px solid #eee; text-align: center; }
+        .cart-table th { background-color: #f4f4f4; font-size: 1em; }
+        .cart-item-info { display: flex; align-items: center; text-align: left; }
+        .cart-item-info img { width: 80px; height: 80px; object-fit: cover; margin-right: 15px; border: 1px solid #eee; }
+        .item-details a { text-decoration: none; color: #333; }
+        .item-details a:hover { color: #cc0000; }
+        
+        /* Quantity Control */
+        .quantity-control input { width: 40px; text-align: center; padding: 5px; border: 1px solid #ccc; margin: 0 5px; }
+        .quantity-control button { padding: 5px 10px; cursor: pointer; border: 1px solid #ccc; background-color: #fff; }
+
+        /* Summary Box */
+        .summary-box { border: 2px solid #000; padding: 25px; border-radius: 5px; background-color: #fff; }
+        .summary-box h3 { font-size: 1.5em; margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .summary-row.total { font-size: 1.2em; font-weight: bold; color: #cc0000; border-top: 1px solid #333; padding-top: 15px; margin-top: 15px; }
+        
+        .checkout-button { width: 100%; padding: 18px; background-color: #cc0000; color: white; border: none; border-radius: 5px; font-size: 1.2em; cursor: pointer; margin-top: 20px; }
+        .checkout-button:hover { background-color: #a00000; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="klp-title"><a href="KLP/home.html">KLP SHOP</a></div>
+            <div class="klp-util">
+                <a href="KLP/login.html">로그인</a>
+                <a href="KLP/cart.html" style="font-weight: bold;">장바구니</a> </div>
+        </div>
+    </header>
+
+    <div class="cart-container">
+        <h2>장바구니</h2>
+
+        <div class="cart-layout">
+            
+            <div class="item-list-section">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;">선택</th>
+                            <th style="width: 45%;">상품 정보</th>
+                            <th style="width: 15%;">수량</th>
+                            <th style="width: 15%;">판매가</th>
+                            <th style="width: 15%;">합계 금액</th>
+                            <th style="width: 5%;">삭제</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" checked></td>
+                            <td>
+                                <div class="cart-item-info">
+                                    <img src="https://tbhimg.com/images/MB/M ZWS61A200_S00.jpg" alt="셔츠 이미지">
+                                    <div class="item-details">
+                                        <a href="KLP/product_detail.html">스트라이프 오버핏 셔츠</a>
+                                        <p style="font-size: 0.9em; color: #666;">옵션: 블루 / 100</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button>-</button>
+                                    <input type="number" value="1" min="1">
+                                    <button>+</button>
+                                </div>
+                            </td>
+                            <td>39,950원</td>
+                            <td>39,950원</td>
+                            <td><button style="border: none; background: none; color: #999;">X</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" checked></td>
+                            <td>
+                                <div class="cart-item-info">
+                                    <img src="[여성용-롱코트-이미지-URI]" alt="코트 이미지">
+                                    <div class="item-details">
+                                        <a href="KLP/product_detail_2.html">울 블렌드 여성 롱 코트</a>
+                                        <p style="font-size: 0.9em; color: #666;">옵션: 베이지 / M</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button>-</button>
+                                    <input type="number" value="1" min="1">
+                                    <button>+</button>
+                                </div>
+                            </td>
+                            <td>120,000원</td>
+                            <td>120,000원</td>
+                            <td><button style="border: none; background: none; color: #999;">X</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 20px; text-align: right;">
+                    <button style="padding: 10px 15px; background-color: #fff; border: 1px solid #ccc; cursor: pointer;">선택 상품 삭제</button>
+                </div>
+            </div>
+
+            <div class="payment-summary-section">
+                <div class="summary-box">
+                    <h3>결제 예정 금액</h3>
+                    
+                    <div class="summary-row">
+                        <span>총 상품 금액</span>
+                        <span>159,950원</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>총 할인 금액</span>
+                        <span style="color: #cc0000;">- 0원</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>배송비</span>
+                        <span>0원</span> </div>
+                    
+                    <div class="summary-row total">
+                        <span>총 결제 금액</span>
+                        <span style="font-size: 1.5em;">159,950원</span>
+                    </div>
+                    
+                    <button class="checkout-button">159,950원 주문하기</button>
+                    
+                    <p style="text-align: center; font-size: 0.9em; margin-top: 15px; color: #666;">* 배송비는 최종 결제 시점에 적용됩니다.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
