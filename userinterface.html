@@ -3,128 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KLP 린넨 셔츠 상품 상세 - KLP 쇼핑몰</title>
+    <title>KLP: 스트라이프 오버핏 셔츠</title>
     <style>
-        /* 예시 화면을 위한 기본 스타일 */
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; background-color: #f8f8f8; }
-        .product-page-wrapper { display: flex; max-width: 1200px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
-        .product-media-section { flex: 1; padding-right: 30px; }
-        .product-info-section, .product-options-section { flex: 1; padding-left: 20px; }
-        .main-image { width: 100%; height: auto; border-radius: 5px; margin-bottom: 10px; }
-        .thumbnail-list img { width: 80px; height: 80px; object-fit: cover; margin-right: 10px; cursor: pointer; border: 1px solid #eee; border-radius: 3px; }
-        .stars { color: gold; font-size: 1.2em; }
-        .product-title { font-size: 2em; margin-top: 0; }
-        .product-price { font-size: 1.5em; color: #cc0000; font-weight: bold; margin: 10px 0; }
-        .original-price { text-decoration: line-through; color: #999; font-weight: normal; font-size: 0.8em; margin-left: 10px; }
-        .reward-points { color: #007bff; font-weight: bold; }
-        .stock-status { color: green; }
-        .option-selector select { padding: 10px; margin-left: 10px; border-radius: 4px; border: 1px solid #ccc; }
-        button { padding: 12px 25px; margin-top: 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; }
-        .buy-now-button { background-color: #000; color: white; margin-left: 10px; }
-        .add-to-cart-button { background-color: #333; color: white; }
-        .product-description-section { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; clear: both; }
-        .product-description-section ul { list-style: none; padding: 0; }
-        .product-description-section ul li { margin-bottom: 10px; }
-        .reviews-section { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; }
-        .individual-review { border: 1px solid #eee; padding: 15px; margin-bottom: 10px; border-radius: 4px; }
-        .individual-review .review-text { margin-top: 5px; }
-        @media (max-width: 768px) {
-            .product-page-wrapper { flex-direction: column; }
-            .product-info-section, .product-options-section { padding-left: 0; margin-top: 20px; }
-        }
+        /* CSS for PC Screen Layout */
+        body { font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif; line-height: 1.6; margin: 0; background-color: #f8f8f8; color: #333; }
+        .header { background-color: #000; color: white; padding: 15px 0; border-bottom: 3px solid #cc0000; }
+        .header-content { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .klp-title a { font-size: 2em; font-weight: bold; text-decoration: none; color: white; }
+        .klp-util a { color: white; text-decoration: none; margin-left: 20px; font-size: 1em; }
+        .klp-util a:hover { text-decoration: underline; }
+
+        .product-page-wrapper { max-width: 1280px; margin: 40px auto; padding: 0 20px; display: flex; gap: 40px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+
+        /* Left Side: Media and Description */
+        .product-media-section { flex: 2; }
+        .main-image { width: 100%; height: auto; border-radius: 5px; margin-bottom: 15px; border: 1px solid #eee; }
+        .product-description-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+        .section-title { font-size: 1.5em; margin-top: 30px; border-left: 4px solid #cc0000; padding-left: 10px; }
+
+        /* Right Side: Info and Purchase */
+        .product-info-section { flex: 1; padding: 20px 0; }
+        .brand-name { font-size: 1.1em; color: #666; font-weight: normal; margin-bottom: 5px; }
+        .product-title { font-size: 2.2em; margin-top: 0; margin-bottom: 10px; }
+        
+        .price-group { margin: 25px 0; padding: 15px; background-color: #fffaf0; border: 1px dashed #ffd700; border-radius: 4px; }
+        .original-price { font-size: 1.3em; color: #999; text-decoration: line-through; display: block; }
+        .discount-price { font-size: 2.5em; color: #cc0000; font-weight: bold; display: inline-block; margin-right: 15px; }
+        .discount-rate { font-size: 1.2em; color: #cc0000; font-weight: bold; }
+        .reward-points { font-size: 1.1em; color: #007bff; margin-top: 10px; }
+        
+        .product-meta-data { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
+        .meta-data-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95em; }
+        .meta-label { font-weight: bold; color: #555; }
+        .meta-value { color: #000; }
+        
+        /* Options and Buttons */
+        .options-box { margin-top: 30px; padding: 20px 0; border-top: 1px solid #eee; }
+        .option-selector { margin-bottom: 20px; }
+        .option-selector label { display: block; font-weight: bold; margin-bottom: 8px; }
+        .option-selector select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; appearance: none; }
+        
+        .action-buttons { margin-top: 30px; }
+        .buy-now-button { width: 100%; padding: 15px; background-color: #cc0000; color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; margin-bottom: 10px; }
+        .add-to-cart-button { width: 100%; padding: 15px; background-color: #000; color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; }
+        
+        /* Stats and Reviews */
+        .stats-box { margin-top: 30px; padding: 15px; background-color: #f4f4f4; border-radius: 4px; font-size: 0.9em; }
+        .stats-box p { margin: 5px 0; }
+        .stars { color: gold; font-size: 1.1em; margin-right: 5px; }
     </style>
 </head>
 <body>
 
-<div id="product-container" class="product-page-wrapper">
-    <div class="product-media-section">
-        <div class="image-gallery">
-            <img src="[상품-메인-이미지-URI]" alt="상품 메인 이미지" class="main-image">
-            <div class="thumbnail-list">
-                <img src="[상품-썸네일-1-URI]" alt="썸네일 1">
-                <img src="[상품-썸네일-2-URI]" alt="썸네일 2">
+    <header class="header">
+        <div class="header-content">
+            <div class="klp-title"><a href="KLP/home.html">KLP SHOP</a></div>
+            <div class="klp-util">
+                <a href="KLP/login.html">로그인</a>
+                <a href="KLP/cart.html">장바구니</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="product-page-wrapper">
+
+        <div class="product-media-section">
+            <div class="image-gallery">
+                <img src="https://tbhimg.com/images/MB/M ZWS61A200_S00.jpg" alt="스트라이프 오버핏 셔츠 메인 이미지" class="main-image">
+            </div>
+
+            <div class="product-description-section">
+                <h2 class="section-title">상품 상세 설명</h2>
+                <p>
+                    스트라이프 오버핏 셔츠는 1도 스트라이프 패턴으로 크림 한 컬러 기획되었습니다. 어디에나 어울리는 크림 컬러감으로 캐주얼하면서 포멀하게 착용이 가능합니다. 멀티 스트라이프 오버핏 셔츠는 블루, 그레이 두 컬러 기획되었습니다. PC SPAN으로 약간의 신축성이 있으며, 구김이 적어 오피스 웨어로 탁월합니다. 은은한 컬러감으로 포멀한 스트라이프 셔츠 아이템입니다.
+                </p>
             </div>
         </div>
 
-        <div class="review-summary">
-            <p><strong>평균 별점:</strong> <span class="stars">★★★★☆</span> 4.3 / 5.0</p>
-            <p><a href="#reviews-section">총 125개 리뷰 보기</a></p>
+        <div class="product-info-section">
+            <h3 class="brand-name">BRAND: 마인드브릿지</h3>
+            <h1 class="product-title">스트라이프 오버핏 셔츠</h1>
+            
+            <div class="price-group">
+                <span class="original-price">79,900원</span>
+                
+                <div style="display: flex; align-items: center; margin-top: 5px;">
+                    <span class="discount-rate">50%</span>
+                    <span class="discount-price">39,950원</span> 
+                </div>
+
+                <p class="reward-points">⭐ 적립 혜택: **2,500 포인트**</p>
+            </div>
+            
+            <div class="product-meta-data">
+                <div class="meta-data-item">
+                    <span class="meta-label">상품 번호:</span>
+                    <span class="meta-value">WDQLR</span>
+                </div>
+                <div class="meta-data-item">
+                    <span class="meta-label">카테고리:</span>
+                    <span class="meta-value">상의 > 셔츠/블라우스</span>
+                </div>
+                <div class="meta-data-item">
+                    <span class="meta-label">소재:</span>
+                    <span class="meta-value">면 100%</span>
+                </div>
+                <div class="meta-data-item">
+                    <span class="meta-label">세탁 방법:</span>
+                    <span class="meta-value">손세탁</span>
+                </div>
+                <div class="meta-data-item">
+                    <span class="meta-label">성별 대상:</span>
+                    <span class="meta-value">남성</span>
+                </div>
+            </div>
+
+            <div class="options-box">
+                <div class="option-selector">
+                    <label for="color-select">색상:</label>
+                    <select id="color-select">
+                        <option>--- 색상 선택 ---</option>
+                        <option value="블루">블루</option>
+                        <option value="그레이">그레이</option>
+                        <option value="크림">크림</option>
+                    </select>
+                </div>
+
+                <div class="option-selector">
+                    <label for="size-select">사이즈:</label>
+                    <select id="size-select">
+                        <option>--- 사이즈 선택 ---</option>
+                        <option value="95">95</option>
+                        <option value="100">100</option>
+                        <option value="105">105</option>
+                        <option value="110">110</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="stats-box">
+                <p>재고 현황: <strong style="color: red;">[klp:inventory] 재고 부족!</strong> (빠른 구매 요망)</p>
+            </div>
+
+            <div class="action-buttons">
+                <button class="buy-now-button">바로 구매하기</button>
+                <button class="add-to-cart-button">장바구니 담기</button>
+            </div>
+
+            <div class="stats-box">
+                <p>리뷰 수: <strong>72개</strong> (평균 별점: <span class="stars">★★★★☆</span>)</p>
+                <p>조회 수: <strong>3.6천 회 이상</strong></p>
+                <p>누적 판매: <strong>700개 이상</strong></p>
+            </div>
+
         </div>
     </div>
-
-    <div class="product-info-section">
-        <h3 class="brand-name">KLP 패션</h3>
-        <h1 class="product-title">프리미엄 린넨 오버핏 셔츠 (쿨 그레이)</h1>
-
-        <hr>
-
-        <p class="product-id">상품 코드: <span id="identifier-value">KLP-S001923</span></p>
-        <p class="sales-volume">누적 판매량: 980개</p>
-
-        <p class="product-price">판매 가격: 
-            <span class="discount-price">69,000원</span> 
-            <s class="original-price">89,000원</s> 
-            (22% 할인)
-        </p>
-
-        <p class="reward-points">💸 구매 시 **690원** 적립 (1%)</p>
-
-        <p class="payment-charge-detail">카드사별 무이자 할부 혜택 제공 (자세히 보기)</p>
-
-        <p class="stock-status">재고: <span class="in-stock">150개 이상</span></p>
-    </div>
-
-    <div class="product-options-section">
-        <div class="option-selector">
-            <label for="color-select">색상:</label>
-            <select id="color-select">
-                <option value="cool-gray">쿨 그레이 (Cool Gray)</option>
-                <option value="navy">네이비 (Navy)</option>
-            </select>
-        </div>
-
-        <div class="option-selector">
-            <label for="size-select">사이즈 (성별 대상: Men's):</label>
-            <select id="size-select">
-                <option value="95">M (95)</option>
-                <option value="100">L (100)</option>
-                <option value="105">XL (105)</option>
-            </select>
-        </div>
-
-        <button class="add-to-cart-button">장바구니 담기</button>
-        <button class="buy-now-button">바로 구매</button>
-    </div>
-</div>
-
-<div class="product-description-section" style="max-width: 1200px; margin: 20px auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-    <h2 id="description-heading">상품 상세 설명</h2>
-    <p>시원한 린넨 혼방 소재로 제작되어 여름철에도 쾌적하게 착용할 수 있는 오버핏 셔츠입니다. 캐주얼부터 비즈니스 캐주얼까지 활용도가 높습니다.</p>
-    <img src="[상세-착용-이미지-URI]" alt="모델 착용 상세 이미지" style="width: 100%; height: auto; margin: 20px 0;">
-
-    <h3 id="product-spec-heading">상품 규격</h3>
-    <ul>
-        <li><strong>카테고리:</strong> 남성 의류 &gt; 셔츠 &gt; 린넨 셔츠</li>
-        <li><strong>소재:</strong> 린넨 55%, 코튼 45%</li>
-        <li><strong>세탁 방법:</strong> 중성세제를 이용한 손세탁 또는 드라이클리닝 권장</li>
-    </ul>
-
-    <div class="product-views-section">
-        <p>🔥 현재 <span id="views-count">56명</span>이 이 상품을 보고 있습니다.</p>
-    </div>
-
-    <div id="reviews-section" class="reviews-section">
-        <h2>사용자 리뷰 (125개)</h2>
-        <div class="individual-review">
-            <p><strong>ID: user***</strong> | <span class="stars">★★★★★</span></p>
-            <p class="review-text">사이즈도 넉넉하고 소재가 시원해서 만족합니다. 재구매 의사 있어요!</p>
-        </div>
-        <div class="individual-review">
-            <p><strong>ID: KLP***</strong> | <span class="stars">★★★★☆</span></p>
-            <p class="review-text">색상이 화면보다 조금 어둡지만 고급스럽습니다.</p>
-        </div>
-    </div>
-</div>
 
 </body>
 </html>
