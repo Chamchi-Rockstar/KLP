@@ -1,138 +1,47 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KLP SHOP: 프리미엄 의류 쇼핑몰</title>
-    <style>
-        /* Common CSS (Header) */
-        body { font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif; line-height: 1.6; margin: 0; background-color: #f8f8f8; color: #333; }
-        .header { background-color: #000; color: white; padding: 15px 0; border-bottom: 3px solid #cc0000; }
-        .header-content { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .klp-title a { font-size: 2em; font-weight: bold; text-decoration: none; color: white; }
-        .klp-util a { color: white; text-decoration: none; margin-left: 20px; font-size: 1em; }
-        .klp-util a:hover { text-decoration: underline; }
-
-        /* Main Page Specific CSS */
-        .main-container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
-        
-        /* Navigation Bar */
-        .main-nav { background-color: #fff; border-bottom: 1px solid #eee; padding: 15px 0; margin-bottom: 30px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
-        .main-nav ul { list-style: none; padding: 0; margin: 0; text-align: center; }
-        .main-nav ul li { display: inline-block; margin: 0 25px; }
-        .main-nav ul li a { text-decoration: none; color: #333; font-weight: bold; font-size: 1.1em; padding: 5px 0; }
-        .main-nav ul li a:hover { color: #cc0000; border-bottom: 2px solid #cc0000; }
-
-        /* Main Banner */
-        .main-banner { height: 450px; background: url('[메인-배너-이미지-URI]') center center / cover no-repeat; margin-bottom: 40px; display: flex; align-items: center; justify-content: center; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); }
-        .banner-text h1 { font-size: 3.5em; margin: 0; }
-        .banner-text p { font-size: 1.5em; margin-top: 10px; }
-
-        /* Product Grid */
-        .section-header { font-size: 2em; text-align: center; margin: 40px 0 20px; color: #333; position: relative; }
-        .section-header::after { content: ''; display: block; width: 50px; height: 3px; background: #cc0000; margin: 10px auto 0; }
-        
-        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 50px; }
-        .product-card { background-color: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: transform 0.2s; text-align: center; text-decoration: none; color: #333; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); }
-        .product-card img { width: 100%; height: 300px; object-fit: cover; }
-        .product-info { padding: 15px; }
-        .product-info h4 { font-size: 1.1em; margin: 5px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .product-info .price { font-size: 1.2em; color: #cc0000; font-weight: bold; margin-bottom: 5px; }
-        .product-info .rating { color: gold; font-size: 0.9em; }
-        
-        /* Footer */
-        .footer { background-color: #333; color: #fff; padding: 30px 0; margin-top: 50px; }
-        .footer-content { max-width: 1280px; margin: 0 auto; padding: 0 20px; text-align: center; }
-        .footer-content p { margin: 5px 0; font-size: 0.9em; }
-        .footer-content a { color: #ccc; text-decoration: none; margin: 0 10px; }
-    </style>
-</head>
-<body>
-
-    <header class="header">
+<header class="header">
         <div class="header-content">
-            <div class="klp-title"><a href="KLP/home.html">KLP SHOP</a></div>
+            <div class="klp-title"><a href="home.html">KLP SHOP</a></div>
             <div class="klp-util">
-                <a href="KLP/login.html">로그인</a>
-                <a href="KLP/cart.html">장바구니</a>
+                <a href="login.html">로그인</a>
+                <a href="cart.html">장바구니</a>
+                <a href="../index.html" style="color: #ffd700;">메타데이터 인덱스</a>
             </div>
         </div>
     </header>
+    ```
 
-    <nav class="main-nav">
-        <ul>
-            <li><a href="KLP/category_new.html">NEW ARRIVALS</a></li>
-            <li><a href="KLP/category_best.html">BEST</a></li>
-            <li><a href="KLP/category_men.html">MEN</a></li>
-            <li><a href="KLP/category_women.html">WOMEN</a></li>
-            <li><a href="KLP/category_sale.html" style="color: #cc0000;">SALE</a></li>
-        </ul>
-    </nav>
+### 3. `KLP/cart.html` (장바구니 페이지) - 헤더 수정
 
-    <div class="main-banner">
-        <div class="banner-text">
-            <h1>PREMIUM ESSENTIALS</h1>
-            <p>KLP가 엄선한 소재, 뛰어난 착용감으로 일상을 채우세요.</p>
+장바구니 페이지의 헤더에 `index.html` 링크를 추가했습니다.
+
+```html
+    <header class="header">
+        <div class="header-content">
+            <div class="klp-title"><a href="home.html">KLP SHOP</a></div>
+            <div class="klp-util">
+                <a href="login.html">로그인</a>
+                <a href="cart.html" style="font-weight: bold;">장바구니</a>
+                <a href="../index.html" style="color: #ffd700;">메타데이터 인덱스</a>
+            </div>
         </div>
-    </div>
+    </header>
+    ```
 
-    <div class="main-container">
+### 4. `KLP/login.html` (로그인 페이지) - 헤더 수정
 
-        <h2 class="section-header">🔥 WEEKLY BEST SELLERS</h2>
-        <div class="product-grid">
-            <a href="KLP/product_detail.html" class="product-card">
-                <img src="https://tbhimg.com/images/MB/M ZWS61A200_S00.jpg" alt="스트라이프 셔츠">
-                <div class="product-info">
-                    <p class="rating">★★★★☆</p>
-                    <h4>스트라이프 오버핏 셔츠</h4>
-                    <p class="price">39,950원</p>
-                </div>
-            </a>
-            <a href="KLP/product_detail_2.html" class="product-card">
-                <img src="[여성용-롱코트-이미지-URI]" alt="울 블렌드 롱 코트">
-                <div class="product-info">
-                    <p class="rating">★★★★★</p>
-                    <h4>울 블렌드 여성 롱 코트</h4>
-                    <p class="price">120,000원</p>
-                </div>
-            </a>
-            <a href="KLP/product_detail_3.html" class="product-card">
-                <img src="[남성-무지티-이미지-URI]" alt="쿨 코튼 무지 티셔츠">
-                <div class="product-info">
-                    <p class="rating">★★★★☆</p>
-                    <h4>쿨 코튼 오버핏 티셔츠</h4>
-                    <p class="price">19,900원</p>
-                </div>
-            </a>
-            <a href="KLP/product_detail_4.html" class="product-card">
-                <img src="[데님-팬츠-이미지-URI]" alt="슬림핏 데님 팬츠">
-                <div class="product-info">
-                    <p class="rating">★★★★☆</p>
-                    <h4>슬림핏 인디고 데님</h4>
-                    <p class="price">55,000원</p>
-                </div>
-            </a>
+로그인 페이지의 헤더에 `index.html` 링크를 추가했습니다.
+
+```html
+    <header class="header">
+        <div class="header-content">
+            <div class="klp-title"><a href="home.html">KLP SHOP</a></div>
+            <div class="klp-util">
+                <a href="login.html" style="font-weight: bold;">로그인</a>
+                <a href="cart.html">장바구니</a>
+                <a href="../index.html" style="color: #ffd700;">메타데이터 인덱스</a>
+            </div>
         </div>
+    </header>
+    ```
 
-        <h2 class="section-header">✨ NEW ARRIVALS</h2>
-        <div class="product-grid">
-            <a href="#" class="product-card"><img src="[뉴-아이템-1-이미지-URI]" alt="새 상품 1"><div class="product-info"><h4>에센셜 블레이저</h4><p class="price">149,000원</p></div></a>
-            <a href="#" class="product-card"><img src="[뉴-아이템-2-이미지-URI]" alt="새 상품 2"><div class="product-info"><h4>미니멀 스커트</h4><p class="price">49,000원</p></div></a>
-            <a href="#" class="product-card"><img src="[뉴-아이템-3-이미지-URI]" alt="새 상품 3"><div class="product-info"><h4>가죽 로퍼</h4><p class="price">89,000원</p></div></a>
-            <a href="#" class="product-card"><img src="[뉴-아이템-4-이미지-URI]" alt="새 상품 4"><div class="product-info"><h4>헤비 맨투맨</h4><p class="price">35,000원</p></div></a>
-        </div>
-
-    </div>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <p>KLP SHOP | 대표: 홍길동 | 사업자등록번호: 123-45-67890</p>
-            <p>주소: 서울특별시 KLP로 123 | 고객센터: 1588-XXXX</p>
-            <p><a href="#">이용약관</a> | <a href="#">개인정보처리방침</a></p>
-            <p>&copy; 2025 KLP Corporation. All rights reserved.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+이제 **`userinterface.html`**을 포함한 모든 주요 페이지에서 **메인 페이지, 장바구니, 로그인 페이지**에 접근할 수 있으며, **메타데이터 인덱스(`index.html`)**도 참조할 수 있게 되었습니다.
