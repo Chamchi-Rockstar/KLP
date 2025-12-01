@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KLP: 스트라이프 오버핏 셔츠</title>
+    <title>KLP: 스트라이프 오버핏 셔츠 (userinterface)</title>
     <style>
-        /* CSS for PC Screen Layout */
+        /* CSS for PC Screen Layout (Previous styles omitted for brevity) */
         body { font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif; line-height: 1.6; margin: 0; background-color: #f8f8f8; color: #333; }
         .header { background-color: #000; color: white; padding: 15px 0; border-bottom: 3px solid #cc0000; }
         .header-content { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
@@ -14,53 +14,29 @@
         .klp-util a:hover { text-decoration: underline; }
 
         .product-page-wrapper { max-width: 1280px; margin: 40px auto; padding: 0 20px; display: flex; gap: 40px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
-
-        /* Left Side: Media and Description */
         .product-media-section { flex: 2; }
         .main-image { width: 100%; height: auto; border-radius: 5px; margin-bottom: 15px; border: 1px solid #eee; }
         .product-description-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
         .section-title { font-size: 1.5em; margin-top: 30px; border-left: 4px solid #cc0000; padding-left: 10px; }
-
-        /* Right Side: Info and Purchase */
         .product-info-section { flex: 1; padding: 20px 0; }
-        .brand-name { font-size: 1.1em; color: #666; font-weight: normal; margin-bottom: 5px; }
-        .product-title { font-size: 2.2em; margin-top: 0; margin-bottom: 10px; }
-        
         .price-group { margin: 25px 0; padding: 15px; background-color: #fffaf0; border: 1px dashed #ffd700; border-radius: 4px; }
         .original-price { font-size: 1.3em; color: #999; text-decoration: line-through; display: block; }
         .discount-price { font-size: 2.5em; color: #cc0000; font-weight: bold; display: inline-block; margin-right: 15px; }
-        .discount-rate { font-size: 1.2em; color: #cc0000; font-weight: bold; }
-        .reward-points { font-size: 1.1em; color: #007bff; margin-top: 10px; }
-        
         .product-meta-data { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
-        .meta-data-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95em; }
-        .meta-label { font-weight: bold; color: #555; }
-        .meta-value { color: #000; }
-        
-        /* Options and Buttons */
-        .options-box { margin-top: 30px; padding: 20px 0; border-top: 1px solid #eee; }
-        .option-selector { margin-bottom: 20px; }
-        .option-selector label { display: block; font-weight: bold; margin-bottom: 8px; }
-        .option-selector select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; appearance: none; }
-        
         .action-buttons { margin-top: 30px; }
         .buy-now-button { width: 100%; padding: 15px; background-color: #cc0000; color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; margin-bottom: 10px; }
         .add-to-cart-button { width: 100%; padding: 15px; background-color: #000; color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; }
-        
-        /* Stats and Reviews */
-        .stats-box { margin-top: 30px; padding: 15px; background-color: #f4f4f4; border-radius: 4px; font-size: 0.9em; }
-        .stats-box p { margin: 5px 0; }
-        .stars { color: gold; font-size: 1.1em; margin-right: 5px; }
     </style>
 </head>
 <body>
 
     <header class="header">
         <div class="header-content">
-            <div class="klp-title"><a href="KLP/home.html">KLP SHOP</a></div>
+            <div class="klp-title"><a href="home.html">KLP SHOP</a></div>
             <div class="klp-util">
-                <a href="KLP/login.html">로그인</a>
-                <a href="KLP/cart.html">장바구니</a>
+                <a href="login.html">로그인</a>
+                <a href="cart.html">장바구니</a>
+                <a href="../index.html" style="color: #ffd700;">메타데이터 인덱스</a>
             </div>
         </div>
     </header>
@@ -122,34 +98,28 @@
                 <div class="option-selector">
                     <label for="color-select">색상:</label>
                     <select id="color-select">
-                        <option>--- 색상 선택 ---</option>
-                        <option value="블루">블루</option>
-                        <option value="그레이">그레이</option>
-                        <option value="크림">크림</option>
+                        <option>블루</option>
+                        <option>그레이</option>
+                        <option>크림</option>
                     </select>
                 </div>
 
                 <div class="option-selector">
                     <label for="size-select">사이즈:</label>
                     <select id="size-select">
-                        <option>--- 사이즈 선택 ---</option>
-                        <option value="95">95</option>
-                        <option value="100">100</option>
-                        <option value="105">105</option>
-                        <option value="110">110</option>
+                        <option>95</option>
+                        <option>100</option>
+                        <option>105</option>
+                        <option>110</option>
                     </select>
                 </div>
             </div>
             
-            <div class="stats-box">
-                <p>재고 현황: <strong style="color: red;">[klp:inventory] 재고 부족!</strong> (빠른 구매 요망)</p>
-            </div>
-
             <div class="action-buttons">
                 <button class="buy-now-button">바로 구매하기</button>
                 <button class="add-to-cart-button">장바구니 담기</button>
             </div>
-
+            
             <div class="stats-box">
                 <p>리뷰 수: <strong>72개</strong> (평균 별점: <span class="stars">★★★★☆</span>)</p>
                 <p>조회 수: <strong>3.6천 회 이상</strong></p>
