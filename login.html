@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLP: 로그인</title>
+    <style>
+        /* Common CSS (Header) */
+        body { font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif; line-height: 1.6; margin: 0; background-color: #f8f8f8; color: #333; }
+        .header { background-color: #000; color: white; padding: 15px 0; border-bottom: 3px solid #cc0000; }
+        .header-content { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .klp-title a { font-size: 2em; font-weight: bold; text-decoration: none; color: white; }
+        .klp-util a { color: white; text-decoration: none; margin-left: 20px; font-size: 1em; }
+        .klp-util a:hover { text-decoration: underline; }
+
+        /* Login Page Specific CSS */
+        .login-container { 
+            max-width: 400px; 
+            margin: 80px auto; 
+            padding: 40px; 
+            background-color: #fff; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            color: #cc0000;
+        }
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .login-button:hover {
+            background-color: #333;
+        }
+        .login-options {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.9em;
+        }
+        .login-options a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .login-options a:hover {
+            text-decoration: underline;
+            color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="klp-title"><a href="KLP/home.html">KLP SHOP</a></div>
+            <div class="klp-util">
+                <a href="KLP/login.html" style="font-weight: bold;">로그인</a> <a href="KLP/cart.html">장바구니</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="login-container">
+        <h2>KLP 회원 로그인</h2>
+        
+        <form class="login-form" action="/login_process" method="POST">
+            <input type="text" name="user_id" placeholder="아이디 또는 이메일" required>
+            
+            <input type="password" name="password" placeholder="비밀번호" required>
+            
+            <button type="submit" class="login-button">로그인</button>
+        </form>
+        
+        <div class="login-options">
+            <a href="KLP/find_id.html">아이디 찾기</a> | 
+            <a href="KLP/find_password.html">비밀번호 찾기</a> | 
+            <a href="KLP/signup.html">회원가입</a>
+        </div>
+    </div>
+
+</body>
+</html>
