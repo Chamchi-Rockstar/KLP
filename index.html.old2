@@ -189,7 +189,7 @@
             <tr><td class="field-name">Label</td><td>조회수</td></tr>
             <tr><td class="field-name">Type of Term</td><td>Property</td></tr>
         </table>
-        
+       
         <table class="term-definition" data-source="klp" data-term-name="Cumulative sales volume">
             <tr id="https://chamchi-rockstar.github.io/KLP/terms/Cumulativesalesvolume.html" class="divider-title-row">
                 <td colspan="2">Term Name: Cumulative sales volume<div class="more-details-link">
