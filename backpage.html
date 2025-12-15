@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLP Admin: 상품 등록/관리</title>
+    <style>
+        :root {
+            --bg-color: #f3f4f6;
+            --sidebar-color: #1f2937;
+            --card-color: #ffffff;
+            --primary-color: #3b82f6;
+            --text-color: #374151;
+            --border-color: #e5e7eb;
+        }
+
+        * { box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; background-color: var(--bg-color); color: var(--text-color); display: flex; min-height: 100vh; }
+
+        /* 레이아웃: 사이드바 */
+        .sidebar { width: 250px; background-color: var(--sidebar-color); color: white; padding: 20px; display: flex; flex-direction: column; }
+        .sidebar-title { font-size: 20px; font-weight: bold; margin-bottom: 40px; color: #60a5fa; }
+        .menu-item { padding: 12px; margin-bottom: 8px; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        .menu-item:hover { background-color: #374151; }
+        .menu-item.active { background-color: var(--primary-color); font-weight: bold; }
+
+        /* 레이아웃: 메인 컨텐츠 */
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; }
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .page-title { font-size: 24px; font-weight: bold; }
+
+        /* 섹션 1: 통계 대시보드 (Read-only) */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: var(--card-color); padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 4px solid var(--primary-color); }
+        .stat-label { font-size: 12px; color: #6b7280; font-weight: bold; text-transform: uppercase; margin-bottom: 8px; }
+        .stat-value { font-size: 24px; font-weight: bold; color: #111; }
+
+        /* 섹션 2: 입력 폼 */
+        .form-container { background: var(--card-color); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 30px; }
+        .form-section-title { font-size: 18px; font-weight: bold; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .full-width { grid-column: 1 / -1; }
+
+        .form-group { margin-bottom: 5px; }
+        .label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+        .input-text, .input-select, .input-textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; transition: 0.2s; }
+        .input-text:focus { border-color: var(--primary-color); outline: none; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1); }
+        .input-textarea { height: 120px; resize: vertical; }
+        
+        .helper-text { font-size: 11px; color: #9ca3af; margin-top: 4px; }
+
+        /* 버튼 */
+        .btn-group { display: flex; justify-content: flex-end; gap: 10px; margin-top: 30px; }
+        .btn { padding: 12px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; border: none; font-size: 14px; }
+        .btn-secondary { background: white; border: 1px solid var(--border-color); color: #374151; }
+        .btn-primary { background: var(--primary-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-title">KLP MANAGER</div>
+        <div class="menu-item">대시보드</div>
+        <div class="menu-item active">상품 관리</div>
+        <div class="menu-item">주문 관리</div>
+        <div class="menu-item">회원 관리</div>
+        <div class="menu-item">설정</div>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">상품 수정 (Product Editor)</h1>
+            <button class="btn btn-secondary">돌아가기</button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Views (조회수)</div>
+                <div class="stat-value">12,540</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Sales (누적판매량)</div>
+                <div class="stat-value">854</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Avg. Rating (별점)</div>
+                <div class="stat-value">4.8 / 5.0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Reviews (리뷰 수)</div>
+                <div class="stat-value">312 건</div>
+            </div>
+        </div>
+
+        <form class="form-container">
+            <div class="form-section-title">1. 기본 정보 (Basic Info)</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="label">상품아이디 (System ID)</label>
+                    <input type="text" class="input-text" value="KLP-2024-OUTER-001" readonly style="background-color: #f9fafb; color: #999;">
+                    <div class="helper-text">* 시스템 자동 생성 (수정 불가)</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label">브랜드 (Brand)</label>
+                    <select class="input-select">
+                        <option>KLP Originals</option>
+                        <option>Upcycling Lab</option>
+                        <option>Partner Brand</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label class="label">상품명 (Product Name)</label>
+                    <input type="text" class="input-text" placeholder="상품명을 입력하세요" value="방수포 리사이클 메신저백">
+                </div>
+
+                <div class="form-group">
+                    <label class="label">카테고리 (Category)</label>
+                    <select class="input-select">
+                        <option>가방 (Bag)</option>
+                        <option>의류 (Clothing)</option>
+                        <option>잡화 (Accessory)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="label">사이즈 성별대상 (Target Group)</label>
+                    <select class="input-select">
+                        <option>남녀공용 (Unisex)</option>
+                        <option>남성 (Men)</option>
+                        <option>여성 (Women)</option>
+                    </select>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="form-section-title">2. 가격 및 재고 (Price & Stock)</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="label">판매가 (Price)</label>
+                    <input type="number" class="input-text" placeholder="KRW" value="89000">
+                </div>
+
+                <div class="form-group">
+                    <label class="label">할인율 (Discount %)</label>
+                    <input type="number" class="input-text" placeholder="%" value="10">
+                </div>
+
+                <div class="form-group">
+                    <label class="label">적립금 (Points)</label>
+                    <input type="number" class="input-text" placeholder="Point" value="890">
+                    <div class="helper-text">* 기본 1% 자동 계산 권장</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label">재고 수량 (Stock)</label>
+                    <input type="number" class="input-text" value="150">
+                    <div class="helper-text">* 옵션별 재고는 상세 설정에서 관리</div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="form-section-title">3. 상세 스펙 (Specification)</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="label">소재 (Material)</label>
+                    <input type="text" class="input-text" value="Recycled Tarpaulin 100%">
+                </div>
+
+                <div class="form-group">
+                    <label class="label">세탁방법 (Washing)</label>
+                    <input type="text" class="input-text" value="물티슈로 가볍게 닦아주세요 (세탁 불가)">
+                </div>
+
+                <div class="form-group">
+                    <label class="label">색상 옵션 (Colors)</label>
+                    <input type="text" class="input-text" value="White, Blue, Orange">
+                    <div class="helper-text">* 쉼표(,)로 구분하여 입력</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label">사이즈 스펙 (Size Spec)</label>
+                    <input type="text" class="input-text" value="Free Size (30x40cm)">
+                </div>
+
+                <div class="form-group full-width">
+                    <label class="label">상품 상세 설명 (Description)</label>
+                    <textarea class="input-textarea">업사이클링 브랜드 KLP의 시그니처 아이템입니다...</textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="label">대표 이미지 (Main Image)</label>
+                    <input type="file" class="input-text">
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary">취소</button>
+                <button type="submit" class="btn btn-primary">저장 및 게시</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
